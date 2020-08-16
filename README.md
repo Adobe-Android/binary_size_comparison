@@ -2,9 +2,9 @@
 Binary size comparison across various programming languages
 
 ## C++
-Note: *Extraneous information like BuildID omitted from file output.*
+**Note:** *Extraneous information like BuildID omitted from file output.*
 
-Note: *Windows build 2004 and/or Ubuntu Linux 20.04 used for testing.*
+**Note:** *Windows build 2004 and/or Ubuntu Linux 20.04 used for testing.*
 #### Idiomatic
 ```cpp
 #include <iostream>
@@ -16,31 +16,36 @@ int main()
 }
 ```
 
-Compiler:
+**Compiler:**
 Visual Studio 2019 16.7 - MSVC 19.27 - amd64 - Windows 64-bit release build
 
-Size:
+**Size:**
 12K
 
-Size (with UPX compression):
+**Size (with UPX compression):**
 9K
 
-Compiler:
+**Compiler:**
 Visual Studio 2019 16.7 - MSVC 19.27 - x86 - Windows 32-bit release build
 
-Size:
+**Size:**
 11K
 
-Size (with UPX compression):
+**Size (with UPX compression):**
 8K
 
-Compiler:
+**Compiler:**
 GCC 9.3 - Linux 64-bit build
 
-Size:
+**Size:**
 18K
 
-Size (stripped binary):
+**Command:**
+```sh
+strip hello
+```
+
+**Size (stripped binary):**
 15K
 
 #### C-style
@@ -54,34 +59,39 @@ int main()
 }
 ```
 
-Compiler:
+**Compiler:**
 Visual Studio 2019 16.7 - MSVC 19.27 - amd64 - Windows 64-bit release build
 
-Size:
+**Size:**
 11K
 
-Size (with UPX compression):
+**Size (with UPX compression):**
 8K
 
-Compiler:
+**Compiler:**
 Visual Studio 2019 16.7 - MSVC 19.27 - x86 - Windows 32-bit release build
 
-Size:
+**Size:**
 9K
 
-Size (with UPX compression):
+**Size (with UPX compression):**
 7K
 
-Compiler:
+**Compiler:**
 GCC 9.3 - Linux 64-bit build
 
-Size:
+**Size:**
 17K
 
-Size (stripped binary):
+**Command:**
+```sh
+strip hello
+```
+
+**Size (stripped binary):**
 15K
 
-Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+**Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
 ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, stripped
 ```
@@ -93,19 +103,29 @@ fn main() {
 }
 ```
 
-Compiler:
+**Compiler:**
 Rustc 1.43 - Linux 64-bit release build
 
-Size:
+**Command:**
+```sh
+cargo build --release
+```
+
+**Size:**
 7M
 
-Size (with LTO):
+**Size (with LTO):**
 1.8M
 
-Size (with LTO and stripped):
+**Command:**
+```sh
+strip hello
+```
+
+**Size (with LTO and stripped):**
 195K
 
-Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+**Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
 ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, stripped
 ```
@@ -121,16 +141,16 @@ func main() {
 }
 ```
 
-Compiler:
+**Compiler:**
 Go 1.13 - Linux 64-bit build
 
-Size:
+**Size:**
 2.0M
 
-Size (-ldflags "-s -w"):
+**Size (-ldflags "-s -w"):**
 1.4M
 
-Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+**Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
 ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
 ```
@@ -145,24 +165,39 @@ pub fn main() !void {
 }
 ```
 
-Compiler:
+**Compiler:**
 Zig 0.6.0 - Linux 64-bit release build
 
-Size (--release-fast):
+Command:
+```sh
+zig build-exe hello.zig --release-fast
+```
+
+**Size (--release-fast):**
 167K
 
-Size (--release-small):
+Command:
+```sh
+zig build-exe hello.zig --release-small
+```
+
+**Size (--release-small):**
 78K
 
-Output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+**Output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
 ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, with debug_info, not stripped
 ```
 
-Size (--release-small and stripped):
+Command:
+```sh
+strip hello
+```
+
+**Size (--release-small and stripped):**
 5.3K
 
-Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+**Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
 ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
 ```

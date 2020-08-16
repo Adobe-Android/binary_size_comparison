@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.9...3.17)
+cmake_minimum_required(VERSION 3.9...3.18)
 project(cmake_example VERSION 0.1.0 DESCRIPTION "An example CMake project to be used as a template" LANGUAGES CXX)
 
 add_executable(cmake_example hello.cpp)

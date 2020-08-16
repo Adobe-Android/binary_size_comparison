@@ -2,8 +2,9 @@
 Binary size comparison across various programming languages
 
 ## C++
-Note: *C++ binaries will be much smaller than other languages becuase they are linked dynamically by default rather than statically.*
+Note: *Extraneous information like BuildID omitted from file output.*
 
+Note: *Windows build 2004 and/or Ubuntu Linux 20.04 used for testing.*
 #### Idiomatic
 ```cpp
 #include <iostream>
@@ -80,6 +81,11 @@ Size:
 Size (stripped binary):
 15K
 
+Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+```sh
+ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, stripped
+```
+
 ## Rust
 ```rust
 fn main() {
@@ -98,6 +104,11 @@ Size (with LTO):
 
 Size (with LTO and stripped):
 195K
+
+Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+```sh
+ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, stripped
+```
 
 ## Go
 ```go
@@ -119,6 +130,11 @@ Size:
 Size (-ldflags "-s -w"):
 1.4M
 
+Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+```sh
+ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
+```
+
 ## Zig
 ```zig
 const std = @import("std");
@@ -137,6 +153,19 @@ Size (--release-fast):
 
 Size (--release-small):
 78K
+
+Output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+```sh
+ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, with debug_info, not stripped
+```
+
+Size (--release-small and stripped):
+5.3K
+
+Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):
+```sh
+ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
+```
 
 # Resources:
 * http://timelessname.com/elfbin/

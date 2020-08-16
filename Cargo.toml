@@ -1,7 +1,6 @@
 [package]
 name = "hello_world"
 version = "0.1.0"
-authors = ["tux"]
 edition = "2018"
 
 [profile.release]

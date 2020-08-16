@@ -4,6 +4,36 @@ Binary size comparison across various programming languages
 ## C++
 Note: *C++ binaries will be much smaller than other languages becuase they are linked dynamically by default rather than statically.*
 
+#### Idiomatic
+```cpp
+#include <iostream>
+
+int main()
+{
+    std::string hello_str = "Hello C++\n";
+    std::cout << hello_str;
+}
+```
+
+Compiler:
+Visual Studio 2019 16.7 - MSVC 19.27 - amd64 - Windows 64-bit release build
+
+Size:
+12K
+
+Size (with UPX compression):
+9K
+
+Compiler:
+Visual Studio 2019 16.7 - MSVC 19.27 - x86 - Windows 32-bit release build
+
+Size:
+11K
+
+Size (with UPX compression):
+8K
+
+#### C-style
 ```cpp
 #include <cstdio>
 
@@ -15,7 +45,7 @@ int main()
 ```
 
 Compiler:
-Visual Studio 2019 - amd64 - Windows 64-bit release build
+Visual Studio 2019 16.7 - MSVC 19.27 - amd64 - Windows 64-bit release build
 
 Size:
 11K
@@ -24,7 +54,7 @@ Size (with UPX compression):
 8K
 
 Compiler:
-Visual Studio 2019 - x86 - Windows 32-bit release build
+Visual Studio 2019 16.7 - MSVC 19.27 - x86 - Windows 32-bit release build
 
 Size:
 9K

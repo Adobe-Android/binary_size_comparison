@@ -33,6 +33,15 @@ Size:
 Size (with UPX compression):
 8K
 
+Compiler:
+GCC 9.3 - Linux 64-bit build
+
+Size:
+24K
+
+Size (stripped binary):
+19K
+
 #### C-style
 ```cpp
 #include <cstdio>
@@ -63,7 +72,7 @@ Size (with UPX compression):
 7K
 
 Compiler:
-GCC 9.3 - Linux 64-bit build (-O2)
+GCC 9.3 - Linux 64-bit build
 
 Size:
 17K

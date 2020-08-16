@@ -37,10 +37,10 @@ Compiler:
 GCC 9.3 - Linux 64-bit build
 
 Size:
-24K
+18K
 
 Size (stripped binary):
-19K
+15K
 
 #### C-style
 ```cpp

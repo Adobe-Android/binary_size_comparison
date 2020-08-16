@@ -1,4 +1,4 @@
-# binary_size_comparison
+# binary size comparison
 Binary size comparison across various programming languages
 
 ## C++

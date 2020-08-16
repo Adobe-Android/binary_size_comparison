@@ -1,5 +1,5 @@
 # binary size comparison
-Binary size comparison across various programming languages
+A binary size comparison across various programming languages
 
 ## C++
 **Note:** *Extraneous information like BuildID omitted from file output.*

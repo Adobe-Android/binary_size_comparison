@@ -16,6 +16,8 @@ int main()
 }
 ```
 
+<br/>
+
 **Compiler:**
 Visual Studio 2019 16.7 - MSVC 19.27 - amd64 - Windows 64-bit release build
 
@@ -24,6 +26,8 @@ Visual Studio 2019 16.7 - MSVC 19.27 - amd64 - Windows 64-bit release build
 
 **Size (with UPX compression):**
 9K
+
+<br/>
 
 **Compiler:**
 Visual Studio 2019 16.7 - MSVC 19.27 - x86 - Windows 32-bit release build
@@ -34,19 +38,26 @@ Visual Studio 2019 16.7 - MSVC 19.27 - x86 - Windows 32-bit release build
 **Size (with UPX compression):**
 8K
 
+<br/>
+
 **Compiler:**
 GCC 9.3 - Linux 64-bit build
 
 **Size:**
 18K
 
+**Size (stripped binary):**
+15K
+
 **Command:**
 ```sh
 strip hello
 ```
 
-**Size (stripped binary):**
-15K
+**Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
+```sh
+ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, stripped
+```
 
 #### C-style
 ```cpp
@@ -68,6 +79,8 @@ Visual Studio 2019 16.7 - MSVC 19.27 - amd64 - Windows 64-bit release build
 **Size (with UPX compression):**
 8K
 
+<br/>
+
 **Compiler:**
 Visual Studio 2019 16.7 - MSVC 19.27 - x86 - Windows 32-bit release build
 
@@ -77,19 +90,21 @@ Visual Studio 2019 16.7 - MSVC 19.27 - x86 - Windows 32-bit release build
 **Size (with UPX compression):**
 7K
 
+<br/>
+
 **Compiler:**
 GCC 9.3 - Linux 64-bit build
 
 **Size:**
 17K
 
+**Size (stripped binary):**
+15K
+
 **Command:**
 ```sh
 strip hello
 ```
-
-**Size (stripped binary):**
-15K
 
 **Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
@@ -106,24 +121,26 @@ fn main() {
 **Compiler:**
 Rustc 1.43 - Linux 64-bit release build
 
+**Size:**
+7M
+
 **Command:**
 ```sh
 cargo build --release
 ```
 
-**Size:**
-7M
-
 **Size (with LTO):**
 1.8M
+
+see Cargo.toml
+
+**Size (with LTO and stripped):**
+195K
 
 **Command:**
 ```sh
 strip hello
 ```
-
-**Size (with LTO and stripped):**
-195K
 
 **Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
@@ -147,8 +164,23 @@ Go 1.13 - Linux 64-bit build
 **Size:**
 2.0M
 
+**Command:**
+```sh
+go build hello.go
+```
+
+**Output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
+```sh
+ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, not stripped
+```
+
 **Size (-ldflags "-s -w"):**
 1.4M
+
+**Command:**
+```sh
+go build -ldflags "-s -w" hello.go
+```
 
 **Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
@@ -168,34 +200,34 @@ pub fn main() !void {
 **Compiler:**
 Zig 0.6.0 - Linux 64-bit release build
 
-Command:
+**Size (--release-fast):**
+167K
+
+**Command:**
 ```sh
 zig build-exe hello.zig --release-fast
 ```
 
-**Size (--release-fast):**
-167K
+**Size (--release-small):**
+78K
 
-Command:
+**Command:**
 ```sh
 zig build-exe hello.zig --release-small
 ```
-
-**Size (--release-small):**
-78K
 
 **Output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh
 ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, with debug_info, not stripped
 ```
 
-Command:
+**Size (--release-small and stripped):**
+5.3K
+
+**Command:**
 ```sh
 strip hello
 ```
-
-**Size (--release-small and stripped):**
-5.3K
 
 **Final output from [file(1)](https://www.freebsd.org/cgi/man.cgi?query=file):**
 ```sh

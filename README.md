@@ -132,7 +132,7 @@ cargo build --release
 **Size (with LTO):**
 1.8M
 
-see Cargo.toml
+see [Cargo.toml](https://github.com/Adobe-Android/binary_size_comparison/blob/master/Cargo.toml)
 
 **Size (with LTO and stripped):**
 195K

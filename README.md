@@ -111,6 +111,9 @@ strip hello
 ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, stripped
 ```
 
+**Further Detail:**
+Please see [Notes](#note-1)
+
 ## Rust
 ```rust
 fn main() {
@@ -241,3 +244,23 @@ ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
 * https://golang.org/cmd/link/
 * https://ziglang.org/documentation/0.6.0/
 * https://ziglang.org/documentation/0.6.0/#Build-Mode
+
+# Notes:
+
+### Note 1
+1. You can achieve a near identical result running something like below:
+
+**hello.c**
+```c
+#include <stdio.h>
+
+int main()
+{
+    char hello_str[] = "Hello C\n";
+    printf("%s", hello_str);
+}
+```
+**Command:**
+```sh
+gcc -Os hello.c -o gcc-hello -s
+```

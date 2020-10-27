@@ -253,6 +253,7 @@ ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
 * https://golang.org/cmd/link/
 * https://ziglang.org/documentation/0.6.0/
 * https://ziglang.org/documentation/0.6.0/#Build-Mode
+* https://docs.microsoft.com/en-us/cpp/build/reference/compiler-options-listed-alphabetically?view=vs-2019
 
 # Notes:
 

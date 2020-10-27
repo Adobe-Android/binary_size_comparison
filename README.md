@@ -117,6 +117,9 @@ Please see [Note 1](#note-1)
 **Further reduce binary size leveraging musl libc:**
 Please see [Note 2](#note-2)
 
+**Get truly small binaries with some trade-offs:**
+Please see [Note 3](#note-3)
+
 ## Rust
 ```rust
 fn main() {
@@ -300,3 +303,17 @@ musl-gcc -Os hello.c -o musl-hello -s -static
 26,048 bytes or roughly 26K
 
 The GCC statically linked build is **roughly 30x larger!**
+
+### Note 3
+
+**Warning!** Trade-offs will be made to achieve even smaller binaries. In this example, we're going to use [TCC](https://bellard.org/tcc/tcc-doc.html), the Tiny C Compiler. It supports ANSI C (C89), but also most of the C99 standard. That means that anything beyond C99 will likely never be supported in this compiler. It's up to you to decide if that's an issue. From what I can tell, it only supports dynamic builds so that's what we'll be comparing.
+
+**Command:**
+```sh
+tcc hello.c -o tcc-hello
+```
+
+**Size (TCC dynamic build):**
+3,132 bytes or roughly 3.1K
+
+The TCC dynamically linked build is **roughly 4x smaller** than our musl dynamic build!

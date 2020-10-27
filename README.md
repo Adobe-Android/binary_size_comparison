@@ -111,8 +111,11 @@ strip hello
 ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, for GNU/Linux 3.2.0, stripped
 ```
 
-**Further Detail:**
-Please see [Notes](#note-1)
+**Further detail on GCC compilation:**
+Please see [Note 1](#note-1)
+
+**Further reduce binary size leveraging musl libc:**
+Please see [Note 2](#note-2)
 
 ## Rust
 ```rust
@@ -248,7 +251,10 @@ ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped
 # Notes:
 
 ### Note 1
-1. You can achieve a near identical result running something like below:
+You can achieve a near identical result to what is shown here by running something like below.
+
+* -Os optimizes for size.
+* -s stips the binary of debug information.
 
 **hello.c**
 ```c
@@ -264,3 +270,33 @@ int main()
 ```sh
 gcc -Os hello.c -o gcc-hello -s
 ```
+
+### Note 2
+You can further reduce binary size by leveraging something like [musl libc](https://musl.libc.org/). Becuase our program is already so small and dynamically linked, we shouldn't expect to see a large improvement over the starting size of 14,472 bytes or a little over 14K.
+
+Here we are leveraging musl-gcc, part of the *[musl-tools](https://packages.ubuntu.com/focal/musl-tools)* package, to easily consume musl libc.
+
+**Command:**
+```sh
+musl-gcc -Os hello.c -o musl-hello -s
+```
+
+We reduced our binary size to 14,024 bytes by using the slimmer musl C library implementation. Where musl really shines though is with static builds. Static builds can be preferred because they will not rely on specific versions of libraries on a given system. Because of this, they are also more portable.
+
+**Command:**
+```sh
+gcc -Os hello.c -o gcc-hello -s -static
+```
+
+**Size (GCC static build):**
+798,480 bytes or roughly 780K
+
+**Command:**
+```sh
+musl-gcc -Os hello.c -o musl-hello -s -static
+```
+
+**Size (Musl-gcc static build):**
+26,048 bytes or roughly 26K
+
+The GCC statically linked build is **roughly 30x larger!**

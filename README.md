@@ -120,6 +120,9 @@ Please see [Note 2](#note-2)
 **Get truly small binaries with some trade-offs:**
 Please see [Note 3](#note-3)
 
+**Unlock the tiniest of binaries by replacing our linker (Windows-only):**
+Please see [Note 4](#note-4)
+
 ## Rust
 ```rust
 fn main() {
@@ -317,3 +320,23 @@ tcc hello.c -o tcc-hello
 3,132 bytes or roughly 3.1K
 
 The TCC dynamically linked build is **roughly 4x smaller** than our musl dynamic build!
+
+### Note 4
+
+**Windows-only.** We will be performing the potentially daunting task of replacing our linker to see further reduction of binary size. We will be leveraging [Crinkler](https://github.com/runestubbe/Crinkler), a truly impressive executable file compressor famous in the demoscene for compressing 1k/4k/8k intros. Enough with the introduction, let's see how it compares.
+
+**Size:**
+9K
+
+**Size (with UPX compression):**
+7K
+
+**Command:**
+```sh
+cl.exe /c /O1 /GS- hello.c && C:\Users\your_username_here\Downloads\crinkler23\crinkler23\Win64\Crinkler.exe /SUBSYSTEM:CONSOLE /ENTRY:main hello.obj kernel32.lib user32.lib ucrt.lib
+```
+
+**Size (with Crinkler):**
+531 bytes
+
+Our build using Crinkler is **roughly 13x smaller** than our build with UPX compression! So far, this takes the cake as far as optimizations go. I've seen other interesting optimizations in the past, but I find that most drop to using assembly and ripping out basically all of the useful parts of C to further reduce size. I tend to believe that kind of defeats the point. Replacing your linker may be considered a bit hacky by some, but I never had to start ripping apart C to achieve these results.
